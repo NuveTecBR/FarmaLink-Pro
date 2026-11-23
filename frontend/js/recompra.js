@@ -1,5 +1,5 @@
 // Página Pública de Recompra 1-Clique (Verificação de 4 Dígitos do Telefone, Validação RT p/ Tarjados e Zero Inline Styles)
-import { alternarAltoContraste, apiFetch, brl, carregarTemaInicial, esc, toast } from "./auth.js";
+import { alternarAltoContraste, apiFetch, aplicarTema, brl, carregarTemaInicial, esc, toast } from "./auth.js";
 
 carregarTemaInicial();
 
@@ -55,7 +55,7 @@ async function carregarRecompra(ultimos4 = "") {
     box.innerHTML = `
       <h2>Link de recompra ausente ou incompleto</h2>
       <p>Acesse o link enviado pela sua farmácia no WhatsApp ou visite a Vitrine Digital Sênior.</p>
-      <a href="/vitrine.html" class="btn-senior btn-senior-teal">Ir para a Vitrine da Farmácia</a>`;
+      <a href="/vitrine.html" class="btn btn-teal">Ir para a Vitrine da Farmácia</a>`;
     return;
   }
 
@@ -64,6 +64,15 @@ async function carregarRecompra(ultimos4 = "") {
     const d = await apiFetch(`/api/v1/public/recompra/${encodeURIComponent(tokenAtual)}${query}`);
     dadosToken = d;
     document.getElementById("recompra-loja-nome").textContent = d.farmacia.nome_fantasia;
+
+    if (d.farmacia.telefone_whatsapp) {
+      const btnAt = document.getElementById("btn-recompra-atendente");
+      if (btnAt) {
+        const num = String(d.farmacia.telefone_whatsapp).replace(/\D/g, "");
+        const e164 = num.length <= 11 ? `55${num}` : num;
+        btnAt.href = `https://wa.me/${e164}?text=${encodeURIComponent("Olá! Preciso de ajuda com a recompra do meu medicamento.")}`;
+      }
+    }
 
     if (d.farmacia.razao_social) {
       document.getElementById("footer-razao").textContent = `${d.farmacia.razao_social} — CNPJ: ${d.farmacia.cnpj}`;
@@ -74,12 +83,14 @@ async function carregarRecompra(ultimos4 = "") {
 
     if (!d.ativo) {
       box.innerHTML = `
-        <span class="tag-oferta">REPOSIÇÃO JÁ SOLICITADA</span>
+        <div class="recompra-header-box">
+          <span class="badge badge-teal">REPOSIÇÃO JÁ SOLICITADA</span>
+        </div>
         <h2>Olá, ${esc(d.cliente_primeiro_nome)}! Seu pedido já foi registrado.</h2>
         <p>A sua solicitação de reposição já foi recebida pela farmácia e o próximo ciclo de lembrete foi agendado.</p>
         <div class="flex-row mt-10">
-          <a href="/vitrine.html" class="btn-senior btn-senior-teal">Visitar Vitrine da Farmácia</a>
-          <a href="/painel.html" class="btn-senior btn-senior-outline">Voltar ao Painel da Farmácia</a>
+          <a href="/vitrine.html" class="btn btn-teal">Visitar Vitrine da Farmácia</a>
+          <a href="/painel.html" class="btn btn-outline">Voltar ao Painel da Farmácia</a>
         </div>`;
       return;
     }
@@ -113,13 +124,18 @@ async function carregarRecompra(ultimos4 = "") {
     box.innerHTML = `
       <h2>${esc(err.message)}</h2>
       <p>Você também pode falar diretamente com um atendente humano ou acessar a Vitrine Digital Sênior.</p>
-      <a href="/vitrine.html" class="btn-senior btn-senior-teal">Ir para a Vitrine da Farmácia</a>`;
+      <a href="/vitrine.html" class="btn btn-teal">Ir para a Vitrine da Farmácia</a>`;
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   aplicarNivelFonte(nivelFonte);
   carregarRecompra();
+
+  document.getElementById("btn-topbar-theme")?.addEventListener("click", () => {
+    const atual = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    aplicarTema(atual);
+  });
 
   document.getElementById("btn-font-toggle")?.addEventListener("click", () => {
     aplicarNivelFonte(nivelFonte + 1);
@@ -153,7 +169,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       });
       document.getElementById("recompra-card").innerHTML = `
-        <span class="tag-oferta">RESERVA ${esc(r.codigo_pedido)} REGISTRADA!</span>
+        <div class="recompra-header-box">
+          <span class="badge badge-teal">RESERVA ${esc(r.codigo_pedido)} REGISTRADA!</span>
+        </div>
         <h2>${r.exige_validacao_rt ? "Encaminhado para Validação do(a) Farmacêutico(a) RT" : "Sua reserva entrou em separação para retirada rápida no balcão!"}</h2>
         <div class="sacola-resumo-box">
           <div>Item Reservado: <strong>${esc(dadosToken.produto)}</strong></div>
@@ -164,8 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
           ${r.chave_pix_simulada ? `<div class="aviso-simulado-box mt-10">Chave PIX CNPJ (Simulada p/ Demo): <strong>${esc(r.chave_pix_simulada)}</strong></div>` : ""}
         </div>
         <div class="flex-row mt-10">
-          <a href="/vitrine.html" class="btn-senior btn-senior-teal">Ver Outros Produtos da Vitrine</a>
-          <a href="/painel.html" class="btn-senior btn-senior-outline">Ver Reserva no Painel da Farmácia</a>
+          <a href="/vitrine.html" class="btn btn-teal">Ver Outros Produtos da Vitrine</a>
+          <a href="/painel.html" class="btn btn-outline">Ver Reserva no Painel da Farmácia</a>
         </div>`;
       toast("Reserva para retirada confirmada com sucesso!");
     } catch (err) {

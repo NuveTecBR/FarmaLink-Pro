@@ -2,6 +2,7 @@
 import {
   alternarAltoContraste,
   apiFetch,
+  aplicarTema,
   ativarFocusTrap,
   brl,
   carregarTemaInicial,
@@ -132,7 +133,7 @@ function renderizarProdutos() {
             <span class="preco-atual">${brl(precoEfetivo)}</span>
             <span class="cashback-tag">Volta ${brl(valorCb)} (${pctCashback}% Cashback • Validade 90d)</span>
           </div>
-          <button type="button" class="btn-senior btn-senior-teal" data-add-prod="${p.id}">
+          <button type="button" class="btn btn-teal w-full" data-add-prod="${p.id}">
             ${icon("bag", "ico")} Colocar na Sacola
           </button>
         </article>`;
@@ -160,9 +161,14 @@ function atualizarResumoCarrinho() {
     qtdTotal += quantidade;
     subtotal += (produto.preco_promocional ?? produto.preco_venda) * quantidade;
   }
-  const btnSacola = document.getElementById("btn-abrir-sacola");
-  if (btnSacola) {
-    btnSacola.textContent = `Minha Sacola (${qtdTotal}) • ${brl(subtotal)}`;
+  const btnTxt = document.getElementById("btn-sacola-texto");
+  if (btnTxt) {
+    btnTxt.textContent = `Minha Sacola (${qtdTotal}) • ${brl(subtotal)}`;
+  } else {
+    const btnSacola = document.getElementById("btn-abrir-sacola");
+    if (btnSacola) {
+      btnSacola.textContent = `Minha Sacola (${qtdTotal}) • ${brl(subtotal)}`;
+    }
   }
 }
 
@@ -184,7 +190,7 @@ function abrirModalSacola() {
           <strong>${quantidade}x ${esc(produto.nome_comercial)}</strong>
           <br><span>${brl(preco)} cada • Total: <strong>${brl(preco * quantidade)}</strong></span>
         </div>
-        <button type="button" class="btn-senior btn-senior-sm btn-senior-outline" data-rem-prod="${id}">Remover</button>
+        <button type="button" class="btn btn-sm btn-outline" data-rem-prod="${id}">Remover</button>
       </div>`);
   }
 
@@ -250,14 +256,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const cfg = await apiFetch("/api/v1/public/config");
     const linkDemo = document.getElementById("link-demo-recompra-vitrine");
-    if (linkDemo) {
-      if (cfg.demo && cfg.token_demo_recompra) {
-        linkDemo.href = `/recompra.html?t=${encodeURIComponent(cfg.token_demo_recompra)}`;
-      } else {
-        linkDemo.classList.add("hidden");
-      }
+    const linkTopbarRec = document.getElementById("link-topbar-recompra");
+    if (cfg.demo && cfg.token_demo_recompra) {
+      const recUrl = `/recompra.html?t=${encodeURIComponent(cfg.token_demo_recompra)}`;
+      if (linkDemo) linkDemo.href = recUrl;
+      if (linkTopbarRec) linkTopbarRec.href = recUrl;
+    } else {
+      if (linkDemo) linkDemo.classList.add("hidden");
     }
   } catch { /* modo produção silencioso */ }
+
+  document.getElementById("btn-topbar-theme")?.addEventListener("click", () => {
+    const atual = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    aplicarTema(atual);
+  });
 
   document.getElementById("btn-font-toggle")?.addEventListener("click", () => {
     aplicarNivelFonte(estado.nivelFonte + 1);
