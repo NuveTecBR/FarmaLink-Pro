@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recompra Rápida Autenticada — Farmácias Associadas (FarmaLink Pro)</title>
+  <link rel="icon" type="image/svg+xml" href="/img/associadas-logo.svg">
+  <link rel="stylesheet" href="/css/vitrine.css">
+</head>
+<body>
+  <a href="#recompra-main" class="skip-link">Pular para a confirmação do medicamento</a>
+
+  <div class="demo-switcher-strip" role="navigation" aria-label="Barra de navegação da demonstração">
+    <div class="demo-switcher-inner">
+      <span><strong>Visão do Paciente no Celular</strong> — Protegida por Token SHA-256 + Confirmação dos 4 últimos dígitos do WhatsApp</span>
+      <div class="demo-switcher-links">
+        <a href="/painel.html" class="demo-pill-link">Voltar ao Painel da Farmácia</a>
+        <a href="/vitrine.html" class="demo-pill-link">Abrir Vitrine Sênior 60+</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="vitrine-header">
+    <div class="vitrine-header-inner">
+      <a href="/vitrine.html" class="vitrine-brand">
+        <div class="vitrine-logo">
+          <img src="/img/associadas-logo.svg" alt="Logotipo oficial Farmácias Associadas">
+        </div>
+        <div>
+          <h1 id="recompra-loja-nome">Farmácias Associadas — Unidade Centro</h1>
+          <p>Reposição Programada de Uso Contínuo com Sigilo LGPD</p>
+        </div>
+      </a>
+      <div class="header-controls">
+        <button id="btn-font-toggle" type="button" class="btn-senior btn-senior-white" aria-label="Alternar tamanho da letra">
+          Aumentar Letra (A+)
+        </button>
+        <button id="btn-contrast-toggle" type="button" class="btn-senior btn-senior-white" aria-label="Alternar modo de alto contraste">
+          Alto Contraste
+        </button>
+        <a href="https://wa.me/5541999990000" target="_blank" rel="noopener noreferrer" class="btn-senior btn-senior-white">
+          Falar com Atendente
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="recompra-main" class="container-narrow" tabindex="-1">
+    <section id="recompra-card" class="modal-panel modal-panel-inline" aria-live="polite">
+      <div class="flex-between">
+        <span class="tag-oferta">REPOSIÇÃO DE TRATAMENTO CONTÍNUO</span>
+        <span class="tag-categoria">Sigilo LGPD • Uso Único</span>
+      </div>
+      <h2 id="rec-saudacao">Olá!</h2>
+      <p>Para proteger sua privacidade e autorizar o uso do seu saldo de Cashback, confirme os <strong>4 últimos dígitos do seu WhatsApp</strong>:</p>
+
+      <div class="flex-row">
+        <div class="form-field flex-1">
+          <label for="rec-ultimos4">4 últimos dígitos do seu WhatsApp</label>
+          <input id="rec-ultimos4" class="input-senior" type="text" maxlength="4" pattern="\d{4}" required placeholder="Ex: 0001">
+        </div>
+        <button type="button" id="btn-validar-4digitos" class="btn-senior btn-senior-teal">Revelar Meu Medicamento</button>
+      </div>
+
+      <div class="sacola-resumo-box">
+        <h3 id="rec-produto-nome" class="text-teal-strong">Item de Tratamento Contínuo</h3>
+        <p id="rec-preco-unit"></p>
+        <p class="mt-10">Retirada Rápida na Loja: <strong id="rec-end-atual">Balcão da Farmácia (Sem Fila e Sem Taxa)</strong></p>
+      </div>
+
+      <form id="form-confirmar-recompra" class="flex-col">
+        <div class="form-field">
+          <label for="rec-qtd">Quantas caixas deseja reservar para retirada?</label>
+          <select id="rec-qtd" class="select-senior">
+            <option value="1">1 Caixa (Reposição Padrão)</option>
+            <option value="2">2 Caixas</option>
+            <option value="3">3 Caixas</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="rec-pag">Forma de Pagamento na Retirada</label>
+          <select id="rec-pag" class="select-senior">
+            <option value="PIX_DIRETO">PIX Direto para a Farmácia (Simulado na Demo)</option>
+            <option value="CARTAO_RETIRADA">Cartão no Balcão da Farmácia</option>
+            <option value="DINHEIRO">Dinheiro no Balcão da Farmácia</option>
+          </select>
+        </div>
+
+        <label id="box-cashback-token" class="lgpd-box hidden">
+          <input id="rec-usar-cb" type="checkbox" checked>
+          <span id="lbl-saldo-cb">Usar meu saldo de Cashback disponível</span>
+        </label>
+
+        <div id="rec-calculo-vivo" class="sacola-resumo-box"></div>
+
+        <button type="submit" class="btn-senior btn-senior-orange">
+          Confirmar Reserva para Retirada na Loja
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="legal-footer">
+    <div class="legal-footer-inner">
+      <div>
+        <h3>Identificação Legal &amp; ANVISA (RDC 44/2009)</h3>
+        <p id="footer-razao">Drogaria Centro Saúde Ltda. — CNPJ: 12.345.678/0001-90</p>
+        <p id="footer-endereco">Rua XV de Novembro, 480 — Centro — Curitiba/PR • AFE 7.48291.3</p>
+        <p id="footer-rt">Farmacêutico(a) RT: Fernanda Lima (CRF-PR 21.457)</p>
+      </div>
+      <div>
+        <h3>Privacidade (LGPD) &amp; CDC</h3>
+        <p id="footer-dpo">SAC: 0800-770-4100 • Encarregado de Dados (DPO): privacidade@associadascentro.com.br</p>
+        <p>Medicamentos sujeitos a prescrição passam por validação do(a) Farmacêutico(a) RT antes da expedição (Lei 13.021/2014). Para cancelar lembretes, responda SAIR no WhatsApp.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/recompra.js"></script>
+</body>
+</html>

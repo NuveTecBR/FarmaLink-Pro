@@ -1,0 +1,31 @@
+services:
+  farmalink-pro:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: farmalink-pro
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      TZ: America/Sao_Paulo
+      PORT: 3000
+      DEMO_MODE: "false"
+      JWT_SECRET: "${JWT_SECRET:?Defina um JWT_SECRET com no minimo 32 caracteres no ambiente}"
+      DB_PATH: /data/db/farmalink.sqlite
+      STORAGE_DIR: /data/storage
+      PUBLIC_BASE_URL: "${PUBLIC_BASE_URL:-http://localhost:3000}"
+    volumes:
+      - farmalink_db:/data/db
+      - farmalink_storage:/data/storage
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  farmalink_db:
+  farmalink_storage:

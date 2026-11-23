@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Logotipo Farmácias Associadas FarmaLink Pro">
+  <defs>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00B8B0"/>
+      <stop offset="100%" stop-color="#007A74"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7B1C"/>
+      <stop offset="100%" stop-color="#C25200"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="108" height="108" rx="28" fill="url(#tealGrad)"/>
+  <circle cx="92" cy="28" r="14" fill="url(#orangeGrad)"/>
+  <path d="M50 28 H70 V48 H90 V68 H70 V92 H50 V68 H30 V48 H50 Z" fill="#FFFFFF"/>
+  <circle cx="92" cy="28" r="6" fill="#FFFFFF"/>
+</svg>

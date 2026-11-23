@@ -1,0 +1,11 @@
+node_modules
+backend/node_modules
+backend/.env
+backend/.env.*
+backend/database/*.sqlite
+backend/database/*.sqlite-wal
+backend/database/*.sqlite-shm
+backend/storage
+.git
+.github
+*.log

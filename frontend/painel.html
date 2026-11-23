@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmaLink Pro v3.2 — Plataforma de Gestão e Recorrência Farmacêutica</title>
+  <link rel="icon" type="image/svg+xml" href="/img/associadas-logo.svg">
+  <link rel="stylesheet" href="/css/glass-sidebar.css">
+</head>
+<body>
+  <a href="#view-container" class="skip-link">Pular para o painel principal</a>
+
+  <!-- Barra Global Superior Unificada (Marca + Switcher 3 Visões + Seletor RBAC + Tema + Alto Contraste) -->
+  <header class="eco-global-header" aria-label="Cabeçalho Global do Ecossistema FarmaLink Pro">
+    <div class="eco-header-inner">
+      <div class="eco-header-brand">
+        <button id="btn-pin-sidebar" type="button" class="btn-hamburger active" title="Expandir ou recolher menu lateral" aria-label="Alternar barra lateral" aria-pressed="true">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+        <a href="/index.html" class="eco-brand-link" title="Ir para a Calculadora de ROI e Visão Comercial">
+          <div class="eco-brand-icon" aria-hidden="true">
+            <svg class="ico-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/>
+              <path d="M12 6l-2 4l4 3l-2 4"/>
+            </svg>
+          </div>
+          <div class="eco-brand-text">
+            <strong>FarmaLink <span class="eco-brand-accent">Pro</span> <span class="badge badge-teal">v3.2</span></strong>
+            <span id="topbar-loja-nome">Farmácia Saúde Plena • Unidade Centro</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Alternador das 3 Interfaces Principais (Sem Emojis — Ícones SVG Lineares) -->
+      <nav class="eco-switcher-pill" aria-label="Alternar interface do ecossistema">
+        <a href="/painel.html" class="eco-view-btn active">
+          <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+          <span>Painel Operacional</span>
+        </a>
+        <a href="/vitrine.html" target="_blank" rel="noopener noreferrer" class="eco-view-btn">
+          <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0a3 3 0 0 0 6 0a3 3 0 0 0 6 0"/><path d="M5 12v8h14v-8"/><path d="M9 20v-5h6v5"/>
+          </svg>
+          <span>Vitrine Sênior 60+</span>
+        </a>
+        <a href="/recompra.html" id="link-topbar-recompra" target="_blank" rel="noopener noreferrer" class="eco-view-btn">
+          <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="6" y="2" width="12" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+          <span>Tela de Recompra</span>
+        </a>
+      </nav>
+
+      <!-- Controles Globais: Seletor RBAC + Tema + Alto Contraste -->
+      <div class="eco-header-actions">
+        <div id="showroom-demo-bar" class="rbac-select-pill">
+          <svg class="ico-sm ico-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
+          </svg>
+          <label for="rbac-selector" class="hidden">Perfil RBAC</label>
+          <select id="rbac-selector" aria-label="Selecionar perfil RBAC de demonstração">
+            <option value="DIRETOR">Diretor</option>
+            <option value="FARMACEUTICO">Farmacêutico(a) RT</option>
+            <option value="BALCONISTA">Balconista</option>
+          </select>
+        </div>
+
+        <button type="button" id="btn-topbar-nova-venda" class="btn btn-sm btn-teal" title="Abrir PDV / Frente de Caixa">
+          <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          <span>PDV</span>
+        </button>
+
+        <button type="button" id="btn-topbar-theme" class="btn btn-sm btn-outline" title="Alternar Modo Claro / Escuro" aria-label="Alternar Modo Claro ou Escuro">
+          <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <button type="button" id="btn-topbar-contrast" class="btn btn-sm btn-outline" title="Alternar Modo Alto Contraste">
+          <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/><path d="M12 3v18"/>
+          </svg>
+          <span>Alto Contraste</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Flexbox Geral: Sidebar e Conteúdo Lado a Lado (Sem Sobreposição) -->
+  <div class="dashboard-layout">
+    <!-- Overlay Mobile -->
+    <div id="sidebar-overlay" class="sidebar-overlay hidden" aria-hidden="true"></div>
+
+    <!-- Sidebar Minimalista Branca Abaixo do Header (280px Sticky no Desktop) -->
+    <aside id="glass-sidebar" class="glass-sidebar" aria-label="Menu Lateral Principal da Farmácia">
+      <nav class="sidebar-nav" aria-label="Módulos do Sistema">
+        <button type="button" class="nav-item active" data-aba="dashboard" title="Dashboard Executivo">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/><path d="M7 16v-5"/><path d="M12 16V8"/><path d="M17 16v-3"/>
+            </svg>
+          </span>
+          <span class="nav-label">Dashboard Executivo</span>
+        </button>
+
+        <button type="button" class="nav-item" data-aba="uso_continuo" title="Módulo A — Uso Contínuo e Sigilo LGPD">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+            </svg>
+          </span>
+          <span class="nav-label">Uso Contínuo (Mód. A)</span>
+          <span id="nav-badge-uc" class="nav-badge nav-badge-amber">2</span>
+        </button>
+
+        <button type="button" class="nav-item" data-aba="vitrine" title="Módulo B — Reservas &amp; Retirada na Loja">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </span>
+          <span class="nav-label">Reservas &amp; Retirada (B)</span>
+          <span id="nav-badge-vit" class="nav-badge nav-badge-emerald">2</span>
+        </button>
+
+        <button type="button" class="nav-item" data-aba="triagem_ia" data-recurso="triagem_ia" title="Módulo C — Triagem Receitas IA">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M3 5h4"/>
+            </svg>
+          </span>
+          <span class="nav-label">Triagem Receitas IA (C)</span>
+          <span id="nav-badge-rec" class="nav-badge nav-badge-indigo">1</span>
+        </button>
+
+        <button type="button" class="nav-item" data-aba="radar_validade" title="Módulo D — Radar Validade FEFO">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/>
+            </svg>
+          </span>
+          <span class="nav-label">Radar Validade FEFO (D)</span>
+          <span id="nav-badge-est" class="nav-badge nav-badge-rose">2</span>
+        </button>
+
+        <button type="button" class="nav-item" data-aba="hub_anvisa" data-recurso="hub_anvisa" title="Módulo E — Hub POPs &amp; LGPD">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
+            </svg>
+          </span>
+          <span class="nav-label">Hub POPs &amp; LGPD (E)</span>
+        </button>
+
+        <button type="button" class="nav-item" data-aba="pdv" title="PDV / Frente de Caixa com baixa FEFO">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+          </span>
+          <span class="nav-label">PDV / Frente de Caixa</span>
+          <span id="nav-badge-pdv" class="nav-badge hidden">0</span>
+        </button>
+      </nav>
+
+      <!-- Card de Conformidade RDC 44/2009 & LGPD Ativos -->
+      <div class="sidebar-role-banner">
+        <span id="role-emoji" class="role-emoji" aria-hidden="true"></span>
+        <div class="role-details">
+          <strong><span class="pulse-dot" aria-hidden="true"></span>RDC 44/2009 &amp; LGPD Ativos</strong>
+          <span id="role-plano">AES-256-GCM • FEFO • Centavos INT</span>
+          <span id="role-cargo" class="hidden">DIRETOR</span>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div id="profile-popover" class="profile-popover hidden">
+          <button id="btn-toggle-theme" type="button" class="btn btn-sm btn-outline">Alternar Tema Claro / Escuro</button>
+          <button id="btn-switch-plano" type="button" class="btn btn-sm btn-outline">Alternar Plano PRO / Essencial</button>
+          <a href="/index.html" class="btn btn-sm btn-outline">Calculadora de ROI</a>
+          <button id="btn-logout" type="button" class="btn btn-sm btn-primary">Encerrar Sessão</button>
+        </div>
+        <button id="btn-profile-trigger" type="button" class="profile-trigger" title="Preferências da Conta e Tema">
+          <div id="avatar-iniciais" class="avatar-circle">DR</div>
+          <div class="profile-meta">
+            <strong id="user-nome">Dr. Ricardo Nogueira</strong>
+            <span id="user-sub">Diretor • Acesso Total</span>
+          </div>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Área Principal de Conteúdo -->
+    <div class="main-wrapper">
+      <main id="view-container" aria-live="polite" tabindex="-1">
+        <!-- Renderizado dinamicamente por /js/painel.js -->
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="/js/painel.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso ao Sistema — FarmaLink Pro (Gestão Farmacêutica)</title>
+  <link rel="icon" type="image/svg+xml" href="/img/associadas-logo.svg">
+  <link rel="stylesheet" href="/css/glass-sidebar.css">
+</head>
+<body>
+  <a href="#login-main" class="skip-link">Pular para o formulário de acesso</a>
+
+  <div class="split-login-layout">
+    <!-- Lado Esquerdo: Vitrine Institucional -->
+    <section class="split-brand-pane" aria-label="Destaques Institucionais FarmaLink Pro">
+      <div>
+        <div class="flex-row mb-20">
+          <div class="brand-logo-box">
+            <img src="/img/associadas-logo.svg" alt="Logotipo Farmácias Associadas">
+          </div>
+          <div>
+            <span class="badge badge-teal">✚ FARMÁCIAS ASSOCIADAS • v3.1</span>
+          </div>
+        </div>
+
+        <h1>Recorrência ética no balcão e reserva para retirada rápida na loja.</h1>
+        <p class="lead-text">
+          Gerencie tratamentos contínuos com lembretes neutros (LGPD), priorize a economia do paciente na intercambialidade de genéricos e controle lotes com saída FEFO.
+        </p>
+
+        <div class="split-pillars">
+          <div class="pillar-card">
+            <strong>Uso Contínuo Seguro</strong>
+            <span>Lembrete neutro no WhatsApp + token SHA-256 + validação do(a) RT para tarjados.</span>
+          </div>
+          <div class="pillar-card">
+            <strong>Reserva &amp; Retirada na Loja</strong>
+            <span>Vitrine Sênior 60+ com 3 níveis de fonte (A/A+/A++) e Alto Contraste.</span>
+          </div>
+          <div class="pillar-card">
+            <strong>Copiloto de Receitas IA</strong>
+            <span>Sem envio de imagem à IA externa; prioriza o menor preço ao paciente.</span>
+          </div>
+          <div class="pillar-card">
+            <strong>Radar FEFO 30/60/90d</strong>
+            <span>Importação idempotente de XML NF-e e bloqueio de lotes vencidos.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="legal-note">
+        Drogaria Centro Saúde Ltda. (Demo) • CNPJ 12.345.678/0001-90 • AFE 7.48291.3 • RT: Fernanda Lima (CRF-PR 21.457) • Conformidade ANVISA RDC 44/2009 &amp; LGPD
+      </div>
+    </section>
+
+    <!-- Lado Direito: Formulário de Login + Acesso Rápido 1-Clique -->
+    <main id="login-main" class="split-form-pane" tabindex="-1">
+      <div class="login-box">
+        <div class="card card-highlight-teal">
+          <div>
+            <span class="badge badge-teal">SESSÃO REVOGÁVEL (JTI) • ANTI-CSRF • BLOQUEIO 5 TENTATIVAS</span>
+            <h2 class="h-title-md">Acessar Painel da Farmácia</h2>
+            <p class="kpi-sub">Proteção contra força bruta e isolamento Multi-Tenant por unidade.</p>
+          </div>
+
+          <form id="form-login" class="flex-col">
+            <div class="form-group">
+              <label for="email">E-mail Corporativo</label>
+              <input id="email" class="input" type="email" required value="dono@associadas.demo" autocomplete="username">
+            </div>
+            <div class="form-group">
+              <label for="senha">Senha de Acesso</label>
+              <input id="senha" class="input" type="password" required value="Associadas@2026" autocomplete="current-password">
+            </div>
+            <button id="btn-entrar" type="submit" class="btn btn-lg btn-primary w-full">
+              Entrar no Painel FarmaLink Pro ➔
+            </button>
+          </form>
+
+          <!-- Acesso Rápido 1-Clique do Modo Apresentação -->
+          <div id="demo-quick-box" class="hidden divider-top">
+            <span class="kpi-label mb-8">Modo Apresentação Comercial — Entrar em 1 Clique:</span>
+            <div class="flex-row mt-8">
+              <button type="button" class="btn btn-sm btn-teal" data-demo-cargo="DIRETOR">Diretor</button>
+              <button type="button" class="btn btn-sm btn-teal" data-demo-cargo="FARMACEUTICO">Farmacêutico(a) RT</button>
+              <button type="button" class="btn btn-sm btn-teal" data-demo-cargo="BALCONISTA">Balconista</button>
+            </div>
+          </div>
+
+          <div class="flex-between divider-top">
+            <a href="/vitrine.html" class="link-teal">Abrir Vitrine Sênior 60+</a>
+            <a href="/index.html" class="link-muted">Calculadora de ROI (Hub)</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/js/login.js"></script>
+</body>
+</html>

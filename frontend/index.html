@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmaLink Pro — Sistema Inteligente de Gestão Farmacêutica &amp; Calculadora de ROI</title>
+  <link rel="icon" type="image/svg+xml" href="/img/associadas-logo.svg">
+  <link rel="stylesheet" href="/css/glass-sidebar.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+  <div class="hub-container">
+    <header class="topbar">
+      <div class="flex-row">
+        <div class="brand-logo-box">
+          <img src="/img/associadas-logo.svg" alt="Logotipo oficial Farmácias Associadas FarmaLink Pro">
+        </div>
+        <div>
+          <span class="badge badge-teal">SHOWROOM DEMONSTRATIVO • FARMÁCIAS ASSOCIADAS v3.3</span>
+          <h1 class="h-title-lg">FarmaLink Pro — Recorrência, Reserva &amp; Retirada na Loja e Copiloto Farmacêutico</h1>
+        </div>
+      </div>
+
+      <nav class="flex-row" aria-label="Atalhos Principais do Showroom">
+        <button type="button" id="btn-hub-theme" class="btn btn-sm btn-outline" aria-label="Alternar tema escuro ou claro clínico">Tema</button>
+        <button type="button" id="btn-hub-contrast" class="btn btn-sm btn-outline" aria-label="Alternar modo de alto contraste">Alto Contraste</button>
+        <a href="/vitrine.html" class="btn btn-sm btn-teal">Vitrine Sênior 60+</a>
+        <a href="/recompra.html" data-link-demo-recompra class="btn btn-sm btn-outline">Tela Recompra 1-Clique</a>
+        <a href="/painel.html" class="btn btn-primary">Entrar no Painel Operacional ➔</a>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <!-- HERO COMERCIAL + CALCULADORA INTERATIVA COM PREMISSAS EDITÁVEIS -->
+      <section class="hub-hero" aria-label="Apresentação Executiva e Calculadora de Retorno Financeiro">
+        <div>
+          <span class="badge badge-orange">ECOSSISTEMA DE RETENÇÃO E CONFORMIDADE FARMACÊUTICA</span>
+          <h1>Fidelize pacientes de uso contínuo e fortaleça suas reservas para retirada na loja sem depender de marketplaces terceiros.</h1>
+          <p class="lead-text mb-20">
+            O <strong>FarmaLink Pro</strong> apoia a farmácia associada com lembretes neutros de reposição no WhatsApp (com validação do(a) Farmacêutico(a) RT para tarjados), triagem ética de receitas priorizando o genérico de menor preço ao paciente e controle de lotes com saída automática FEFO.
+          </p>
+
+          <div class="mb-14">
+            <span class="kpi-label mb-8">TESTAR AGORA EM 1 CLIQUE (ESCOLHA A VISÃO PARA DEMONSTRAR):</span>
+            <div class="flex-row mt-8">
+              <button type="button" class="btn btn-lg btn-primary" data-enter-cargo="DIRETOR">Entrar como Diretor</button>
+              <button type="button" class="btn btn-lg btn-teal" data-enter-cargo="FARMACEUTICO">Entrar como Farmacêutico(a) RT</button>
+              <button type="button" class="btn btn-lg btn-outline" data-enter-cargo="BALCONISTA">Entrar como Balconista</button>
+            </div>
+          </div>
+
+          <div class="flex-row mt-16">
+            <span class="badge badge-teal">ANVISA RDC 44/2009 &amp; Lei 13.021/2014</span>
+            <span class="badge badge-teal">LGPD Saúde Art. 11 &amp; Art. 18</span>
+            <span class="badge badge-teal">Intercambialidade Lei 9.787/99</span>
+          </div>
+          <p class="legal-note mt-8">
+            *Nota: Ambiente de demonstração com dados fictícios e valores ilustrativos. O uso da identidade visual requer autorização da respectiva rede/associada.
+          </p>
+        </div>
+
+        <!-- Calculadora de ROI com Premissas Editáveis e Cenário Conservador -->
+        <aside class="roi-calculator-card" aria-label="Calculadora Interativa de Impacto Mensal">
+          <div class="flex-between">
+            <span class="badge badge-orange">SIMULADOR COM PREMISSAS EDITÁVEIS</span>
+            <span class="badge badge-teal">CENÁRIO CONSERVADOR</span>
+          </div>
+          <h2 class="h-title-md">Simule o impacto mensal na sua farmácia</h2>
+
+          <div class="form-group">
+            <div class="flex-between">
+              <label for="calc-continuo">1. Clientes de Uso Contínuo cadastrados/dia</label>
+              <strong id="lbl-continuo-val" class="text-teal">10 pacientes/dia</strong>
+            </div>
+            <input id="calc-continuo" type="range" min="3" max="50" step="1" value="10">
+            <span class="kpi-sub">Vendas recorrentes estimadas: <strong id="res-continuo">R$ 3.575,00/mês</strong></span>
+          </div>
+
+          <div class="form-group">
+            <div class="flex-between">
+              <label for="calc-ifood">2. Vendas mensais migradas p/ Reserva &amp; Retirada na Loja</label>
+              <strong id="lbl-ifood-val" class="text-teal">R$ 30.000,00</strong>
+            </div>
+            <input id="calc-ifood" type="range" min="5000" max="120000" step="2500" value="30000">
+            <span class="kpi-sub">Comissão de marketplace terceiro evitada: <strong id="res-ifood">R$ 5.400,00/mês</strong></span>
+          </div>
+
+          <div class="form-group">
+            <div class="flex-between">
+              <label for="calc-validade">3. Custo de lotes em risco a cada 90 dias</label>
+              <strong id="lbl-validade-val" class="text-teal">R$ 2.500,00</strong>
+            </div>
+            <input id="calc-validade" type="range" min="500" max="15000" step="500" value="2500">
+            <span class="kpi-sub">Custo recuperado com Radar FEFO (60%): <strong id="res-validade">R$ 1.500,00/mês</strong></span>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="prem-ticket">Ticket Médio (R$)</label>
+              <input id="prem-ticket" class="input" type="number" min="20" max="300" value="55">
+            </div>
+            <div class="form-group">
+              <label for="prem-conversao">Conversão Alerta (%)</label>
+              <input id="prem-conversao" class="input" type="number" min="5" max="80" value="25">
+            </div>
+            <div class="form-group">
+              <label for="prem-taxa-mkt">Taxa Marketplace (%)</label>
+              <input id="prem-taxa-mkt" class="input" type="number" min="5" max="35" value="18">
+            </div>
+          </div>
+
+          <div class="comparison-box winner" aria-live="polite">
+            <span class="kpi-label">RESULTADO SEPARADO POR CATEGORIA CONTÁBIL (VALORES ILUSTRATIVOS):</span>
+            <div id="res-total-mes" class="kpi-value-md text-teal">R$ 6.900,00/mês em economia + R$ 3.575,00/mês em recompras</div>
+            <p id="res-total-ano" class="kpi-sub text-orange"></p>
+          </div>
+        </aside>
+      </section>
+
+      <!-- AS 3 EXPERIÊNCIAS INTERATIVAS DO SHOWROOM -->
+      <h2 class="mb-14">Explore as 3 Experiências Integradas da Plataforma</h2>
+      <section class="grid-3col" aria-label="Módulos e Experiências do FarmaLink Pro">
+        <article class="card card-interactive card-highlight-teal">
+          <div class="flex-between">
+            <span class="badge badge-teal">1. BACKOFFICE OPERACIONAL</span>
+          </div>
+          <h3>Painel do Diretor, Farmacêutico(a) RT &amp; Balcão</h3>
+          <p class="kpi-sub">Métricas contábeis separadas, Uso Contínuo com mensagem neutra LGPD, Triagem de Receitas por IA, Radar de Validade FEFO, POPs ANVISA Append-Only e Portabilidade LGPD.</p>
+          <div class="mt-auto">
+            <a href="/painel.html" class="btn btn-teal w-full">Abrir Painel Operacional ➔</a>
+          </div>
+        </article>
+
+        <article class="card card-interactive card-highlight-orange">
+          <div class="flex-between">
+            <span class="badge badge-orange">2. VITRINE SÊNIOR 60+</span>
+          </div>
+          <h3>Reserva &amp; Retirada na Loja + Receitas</h3>
+          <p class="kpi-sub">Escala de fonte em 3 níveis (18px, 21px A+, 24px A++), Modo Alto Contraste, botão Falar com Atendente Humano, ilustrações SVG de produtos e trava ANVISA RDC 44/2009.</p>
+          <div class="mt-auto">
+            <a href="/vitrine.html" class="btn btn-primary w-full">Visitar Vitrine Digital Sênior ➔</a>
+          </div>
+        </article>
+
+        <article class="card card-interactive card-highlight-teal">
+          <div class="flex-between">
+            <span class="badge badge-success">3. REPOSIÇÃO AUTENTICADA</span>
+          </div>
+          <h3>Tela de Recompra com Desafio de 4 Dígitos</h3>
+          <p class="kpi-sub">O link recebido no WhatsApp exige os 4 últimos dígitos do telefone antes de revelar o medicamento e o saldo de cashback, retendo tarjados para validação do(a) RT.</p>
+          <div class="mt-auto">
+            <a href="/recompra.html" data-link-demo-recompra class="btn btn-outline w-full">Testar Link de Recompra 1-Clique ➔</a>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer-bar flex-between">
+      <div>
+        <strong>Drogaria Centro Saúde Ltda. (Demo)</strong> • CNPJ: 12.345.678/0001-90 • AFE/ANVISA nº 7.48291.3 • Farmacêutico(a) RT: Fernanda Lima (CRF-PR 21.457)
+      </div>
+      <div>
+        SAC: 0800-770-4100 • DPO / Privacidade LGPD: privacidade@associadascentro.com.br
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/js/index.js"></script>
+</body>
+</html>
